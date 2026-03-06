@@ -46,7 +46,8 @@ Recovery: Claude Code → llm-circuit → Anthropic API  ← automatic
 pip install llm-circuit
 
 # Start the proxy
-export ANTHROPIC_API_KEY=sk-ant-...
+export ANTHROPIC_API_KEY=sk-ant-...  # API key users only
+# Max plan / OAuth users: skip the line above — auth passes through automatically
 llm-circuit start
 
 # Point Claude Code at the proxy (in a new shell or your .zshrc)
@@ -97,7 +98,7 @@ All configuration via environment variables or a `.env` file:
 
 | Variable | Default | Description |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | required | Your Anthropic API key |
+| `ANTHROPIC_API_KEY` | optional | API key users only — Max plan / OAuth users omit this |
 | `ANTHROPIC_UPSTREAM_URL` | `https://api.anthropic.com` | Upstream Anthropic endpoint |
 | `FALLBACK_OLLAMA_URL` | `http://localhost:11434` | Your Ollama instance |
 | `FALLBACK_MODEL` | `qwen2.5:14b` | Model to use during fallback |

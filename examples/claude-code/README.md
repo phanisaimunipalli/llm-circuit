@@ -7,7 +7,12 @@
 ```bash
 pip install llm-circuit
 
+# API key users:
 export ANTHROPIC_API_KEY=sk-ant-...
+
+# Max plan / OAuth users: skip the line above
+# llm-circuit passes your Claude Code session auth through automatically
+
 export FALLBACK_OLLAMA_URL=http://localhost:11434  # default
 export FALLBACK_MODEL=qwen2.5:14b                 # default
 
@@ -71,7 +76,7 @@ When the circuit is OPEN, `state` will be `"open"` and responses will include th
 
 ```bash
 # ~/.zshrc or ~/.bashrc
-export ANTHROPIC_API_KEY=sk-ant-...
+export ANTHROPIC_API_KEY=sk-ant-...        # API key users only
 export ANTHROPIC_BASE_URL=http://127.0.0.1:8742
 ```
 
