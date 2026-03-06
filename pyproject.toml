@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "llm-circuit"
+version = "0.1.0"
+description = "Circuit breaker pattern for agentic LLM workflows — automatic failover from Claude to local models"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+keywords = ["llm", "claude", "anthropic", "ollama", "circuit-breaker", "failover", "proxy", "ai-agents"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: Proxy Servers",
+]
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "httpx>=0.25.0",
+    "pydantic-settings>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-asyncio>=0.21", "httpx"]
+
+[project.scripts]
+llm-circuit = "llm_circuit.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/phanisaimunipalli/llm-circuit"
+Documentation = "https://github.com/phanisaimunipalli/llm-circuit#readme"
+Issues = "https://github.com/phanisaimunipalli/llm-circuit/issues"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
