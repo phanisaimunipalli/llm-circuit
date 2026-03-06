@@ -189,6 +189,10 @@ def _forward_headers(request: Request) -> dict:
         for k, v in request.headers.items()
         if k.lower() not in ("host", "content-length", "transfer-encoding")
     }
-    # Always inject the real API key
-    headers["x-api-key"] = settings.anthropic_api_key
+    # Pass through the original auth headers (x-api-key, Authorization).
+    # This supports both API key users and Max plan users (OAuth session auth).
+    # Only inject ANTHROPIC_API_KEY as a fallback if no auth is present.
+    has_auth = "x-api-key" in headers or "authorization" in headers
+    if not has_auth and settings.anthropic_api_key:
+        headers["x-api-key"] = settings.anthropic_api_key
     return headers
